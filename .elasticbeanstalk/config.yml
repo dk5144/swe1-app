@@ -2,6 +2,8 @@ branch-defaults:
   default:
     environment: polls-env
     group_suffix: null
+  main:
+    environment: polls-env
 global:
   application_name: djangotutorial
   branch: null
