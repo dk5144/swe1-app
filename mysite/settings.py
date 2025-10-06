@@ -50,7 +50,7 @@ MIDDLEWARE = [
 ]
 
 # Use EB-provided env var for SQLite location
-SQLITE_PATH = os.environ.get("SQLITE_PATH", "/var/app/data/db.sqlite3")
+SQLITE_PATH = os.environ.get("SQLITE_PATH", str(BASE_DIR / "db.sqlite3"))
 
 DATABASES = {
     "default": {
