@@ -1,20 +1,29 @@
-dist: focal 
-language: python
-script: echo "testing"
-install: skip
-
+dist: focal
 
 language: python
 python: "3.11"
-services:
-  - postgresql
-addons:
-  postgresql: "14"
+
+cache: pip
+
 env:
   global:
+    # Change this if your settings module lives elsewhere
     - DJANGO_SETTINGS_MODULE=config.settings
-    # Add more env vars via Travis UI for secrets (DEBUG, DATABASE_URL, etc.)
+    - PYTHONUNBUFFERED=1
+
 install:
   - pip install -r requirements.txt
+
+before_script:
+  # Prepare DB for tests (SQLite by default)
+  - python manage.py migrate --noinput
+
 script:
+  # Code quality + tests + your tiny sanity script
+  - black --check .
+  - flake8 --max-line-length=150 .
+  - coverage run manage.py test
   - python test_ci.py
+
+after_success:
+  - coveralls
