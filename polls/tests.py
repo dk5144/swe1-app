@@ -33,7 +33,6 @@ class QuestionModelTests(TestCase):
     def test_was_published_recently_exactly_24h_old(self):
         fixed_now = timezone.now().replace(microsecond=0)
         boundary = (fixed_now - datetime.timedelta(days=1)).replace(microsecond=0)
-        # Patch timezone.now() inside the models module so both sides use identical "now"
         with patch("polls.models.timezone.now", return_value=fixed_now):
             q = Question.objects.create(question_text="boundary", pub_date=boundary)
             self.assertTrue(q.was_published_recently())
@@ -49,5 +48,5 @@ class ChoiceModelTests(TestCase):
     def test_choice_str_and_default_votes(self):
         q = Question.objects.create(question_text="Pick one", pub_date=timezone.now())
         c = Choice.objects.create(question=q, choice_text="A")
-        self.assertEqual(str(c), "A")   # __str__
-        self.assertEqual(c.votes, 0)    # default votes
+        self.assertEqual(str(c), "A")  # __str__
+        self.assertEqual(c.votes, 0)  # default votes
