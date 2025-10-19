@@ -1,0 +1,10 @@
+[run]
+branch = True
+source = .
+omit =
+    */migrations/*
+    */venv/*
+    manage.py
+
+[report]
+skip_empty = True

@@ -5,21 +5,14 @@ python: "3.11"
 
 cache: pip
 
-env:
-  global:
-    # Change this if your settings module lives elsewhere
-    - DJANGO_SETTINGS_MODULE=config.settings
-    - PYTHONUNBUFFERED=1
-
 install:
   - pip install -r requirements.txt
 
 before_script:
-  # Prepare DB for tests (SQLite by default)
+  # Run migrations so tests don’t crash
   - python manage.py migrate --noinput
 
 script:
-  # Code quality + tests + your tiny sanity script
   - black --check .
   - flake8 --max-line-length=150 .
   - coverage run manage.py test
@@ -27,3 +20,13 @@ script:
 
 after_success:
   - coveralls
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-2
+  app: django-app
+  env: Django-app-env
+  bucket_name: elasticbeanstalk-us-west-2-992382724291
+  on:
+    branch: main
+  skip_cleanup: true
