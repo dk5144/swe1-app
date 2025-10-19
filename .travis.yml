@@ -13,6 +13,7 @@ before_script:
   - python manage.py migrate --noinput
 
 script:
+  - black .
   - black --check .
   - flake8 .
   - coverage run manage.py test
