@@ -28,6 +28,6 @@ deploy:
   env: Django-app-env
   bucket_name: elasticbeanstalk-us-east-1-188772318764
   on:
-    repo: dhritykachhwaha/swe1-app
+    repo: dk5144/swe1-app
     branch: main
   skip_cleanup: true
