@@ -23,10 +23,11 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: us-west-2
+  region: us-east-1
   app: django-app
   env: Django-app-env
-  bucket_name: elasticbeanstalk-us-west-2-992382724291
+  bucket_name: elasticbeanstalk-us-east-1-188772318764
   on:
+    repo: dhritykachhwaha/swe1-app
     branch: main
   skip_cleanup: true
