@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
+
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
@@ -13,13 +14,16 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Question.objects.order_by("-pub_date")[:5]
 
+
 class DetailView(generic.DetailView):
     model = Question
     template_name = "polls/detail.html"
 
+
 class ResultsView(generic.DetailView):
     model = Question
     template_name = "polls/results.html"
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -35,6 +39,4 @@ def vote(request, question_id):
     else:
         selected_choice.votes = F("votes") + 1
         selected_choice.save()
-        return HttpResponseRedirect(
-            reverse("polls:results", args=(question.id,))
-        )
+        return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))

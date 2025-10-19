@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.test import TestCase
 from polls.models import Question
 
+
 class QuestionModelTests(TestCase):
     def test_was_published_recently_future(self):
         future = timezone.now() + datetime.timedelta(days=1)
