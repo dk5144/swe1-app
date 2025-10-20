@@ -4,6 +4,10 @@ branch-defaults:
     group_suffix: null
   main:
     environment: polls-env
+environment-defaults:
+  polls-env:
+    branch: null
+    repository: null
 global:
   application_name: djangotutorial
   branch: null
@@ -16,5 +20,5 @@ global:
   platform_version: null
   profile: null
   repository: null
-  sc: null
+  sc: git
   workspace_type: Application
