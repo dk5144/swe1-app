@@ -13,8 +13,7 @@ A simple Django application built for CI/CD integration and deployment practice 
 ---
 
 ## 🌐 Application URL
-http://django-app-env.eba-nwwq6smg.us-east-1.elasticbeanstalk.com/polls/
-
+http://polls-env.eba-znat2pgx.us-east-1.elasticbeanstalk.com/polls/
 ---
 
 ### 🧪 Test & Coverage Commands
